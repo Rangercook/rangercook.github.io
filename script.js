@@ -1,13 +1,29 @@
-document.getElementById("leadForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+// public/script.js
 
-  const formData = new FormData(this);
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const message = formData.get("message");
+const stripe = Stripe('pk_test_51RldT7D1tu4jeqnHEBaGMUlcU6Fh3GrJDHjf7O2JCKTC7jxeGniyVrjP7ReJnHBzBzyLLmDfODVvpKd5KngHFYgI0036USj7VN');
 
-  // Replace this with actual backend/email forwarding later
-  document.getElementById("formStatus").innerText = "Thanks, " + name + "! Your request has been submitted.";
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.buy-now');
 
-  // Optionally send to your email using Formspree or Zapier in future
+  buttons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const packageType = button.dataset.package;
+
+      const response = await fetch('http://localhost:4242/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ packageType })
+      });
+
+      const session = await response.json();
+
+      if (session.id) {
+        stripe.redirectToCheckout({ sessionId: session.id });
+      } else {
+        alert('Error creating checkout session.');
+      }
+    });
+  });
 });
