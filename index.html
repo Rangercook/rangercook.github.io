@@ -2,40 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Custom Data Scraping for Leads | Silent Harvest</title>
   <meta name="description" content="Affordable, custom web scraping to generate high-quality leads for any industry. Delivered fast. Pay only when you're happy.">
   <meta name="keywords" content="data scraping, web scraper, lead generation, email list building, real estate leads, ecom scraping, custom scraping service">
   <meta name="robots" content="index, follow">
-  <title>Silent Harvest – Buy Data Scraping Packages</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://js.stripe.com/v3/"></script>
-  <button class="buy-now" data-package="starter">Buy Starter</button>
-<button class="buy-now" data-package="standard">Buy Standard</button>
-<button class="buy-now" data-package="premium">Buy Premium</button>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Silent Harvest – Custom Data Scraping for Leads">
+  <meta property="og:description" content="Get targeted data leads scraped and delivered. Accurate, fast, and custom to your needs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rangercook-github-io.vercel.app">
+  <meta property="og:image" content="https://rangercook-github-io.vercel.app/preview-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Silent Harvest – Custom Scraping for Lead Generation">
+  <meta name="twitter:description" content="Targeted data scraping for real estate, ecommerce, local biz, and more.">
+  <meta name="twitter:image" content="https://rangercook-github-io.vercel.app/preview-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css"/>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Silent Harvest",
+    "url": "https://rangercook-github-io.vercel.app",
+    "description": "Custom data scraping for lead generation across all industries.",
+    "email": "your-email@example.com",
+    "founder": {
+      "@type": "Person",
+      "name": "Malarie Taylor"
+    }
+  }
+  </script>
 </head>
 <body>
   <header>
-    <h1>🧠 Get Your Custom Data Leads</h1>
-    <p>Select a package below and get your leads delivered fast!</p>
+    <h1>🧠 Your Done-For-You Data Scraper</h1>
+    <p>Get custom-built data leads for your business — clean, fast, and ready to use.</p>
   </header>
 
   <section>
-    <div class="package">
-      <h2>💼 Basic Package</h2>
-      <p>✔ 100 leads<br>✔ 24-hour delivery<br>✔ Custom niche targeting</p>
-      <button onclick="buy('price_30.00_BASIC')">Buy for $19</button>
-    </div>
+    <h2>✅ What You Get:</h2>
+    <ul>
+      <li>Custom web scraping for any niche</li>
+      <li>Real emails, contacts, and data you can use</li>
+      <li>Fast delivery & pay-only-when-happy</li>
+    </ul>
+  </section>
 
-    <div class="package">
-      <h2>📊 Standard Package</h2>
-      <p>✔ 500 leads<br>✔ Niche + region filters<br>✔ Priority delivery</p>
-      <button onclick="buy('price_65.00_STANDARD')">Buy for $49</button>
-    </div>
+  <section>
+    <h2>📥 Request Your Data</h2>
+    <form id="leadForm">
+      <input type="text" name="name" placeholder="Your Name" required/>
+      <input type="email" name="email" placeholder="Your Email" required/>
+      <textarea name="message" placeholder="What kind of data do you need?" required></textarea>
+      <button type="submit">Send My Request</button>
+    </form>
+    <p id="formStatus"></p>
+  </section>
 
-    <div class="package">
-      <h2>🚀 Premium Package</h2>
-      <p>✔ 1000+ leads<br>✔ Ecom, Real Estate, or Custom<br>✔ Delivery in under 24h</p>
-      <button onclick="buy('price_125.00_PREMIUM')">Buy for $99</button>
+  <section>
+    <h2>📦 Buy a Package</h2>
+    <div style="margin: 20px 0;">
+      <button class="buy-now" data-package="starter">Buy Starter</button>
+      <button class="buy-now" data-package="standard">Buy Standard</button>
+      <button class="buy-now" data-package="premium">Buy Premium</button>
     </div>
   </section>
 
@@ -43,22 +80,8 @@
     <p>Built by Malarie • Custom Scraping That Gets Results</p>
   </footer>
 
-  <script>
-    const stripe = Stripe('pk_test_51RldT7D1tu4jeqnHEBaGMUlcU6Fh3GrJDHjf7O2JCKTC7jxeGniyVrjP7ReJnHBzBzyLLmDfODVvpKd5KngHFYgI0036USj7VN');
-
-    function buy(priceId) {
-      stripe.redirectToCheckout({
-        lineItems: [{ price: priceId, quantity: 1 }],
-        mode: 'payment',
-        successUrl: 'https://rangercook-github-io.vercel.app/success.html',
-        cancelUrl: 'https://rangercook-github-io.vercel.app/cancel.html'
-      }).then(function (result) {
-        if (result.error) {
-          alert(result.error.message);
-        }
-      });
-    }
-  </script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="script.js"></script>
 </body>
 </html>
 
